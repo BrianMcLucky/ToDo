@@ -1,0 +1,34 @@
+nav {
+  display: inline-block;
+  margin: 0 auto 60px;
+}
+
+a {
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  transition: .5s linear;
+}
+
+ul {
+  list-style: none;
+  margin: 0 auto;
+
+}
+
+.menu ul {
+  background: lavender;
+  overflow: hidden;
+  padding: 0;
+
+}
+.menu li {
+  float: left;
+}
+
+.menu a {
+  display: inline-block;
+  padding: 1em;
+  border-right: 1px solid #ADC0CE;
+  color: black;
+}
+.menu a:hover {background: #ADC0CE}
