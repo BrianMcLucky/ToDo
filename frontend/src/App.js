@@ -10,6 +10,11 @@ import './css/menu-style.css'
 import './css/user-style.css'
 
 
+
+const DOMAIN = 'http://127.0.0.1:8000/api/'
+const get_url = (url) => `${DOMAIN}${url}`
+
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -33,7 +38,7 @@ class App extends React.Component {
         //         'email': 'User2email'
         //     }
         // ]
-        axios.get('http://127.0.0.1:8000/api/users/').then(response => {
+        axios.get(get_url('users/')).then(response => {
             // const users = response.data
             this.setState(
                 {

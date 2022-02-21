@@ -1,13 +1,16 @@
 import React from "react";
 
-export default function Menu () {
+export default function Menu() {
     return (
-        <nav className="menu">
-            <ul>
-                <li><a href="#">ToDo</a></li>
-                <li><a href="#">Проект</a></li>
-                <li><a href="#">Авторизация</a></li>
-            </ul>
-        </nav>
-    )
+        <div className="menu">
+            <a href="#">Todo</a>
+            <a href="#">Проект</a>
+
+            <div className="menu-right">
+                <a href="#">Logout</a>
+            </div>
+        </div>
+
+
+)
 }
