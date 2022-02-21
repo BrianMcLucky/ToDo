@@ -1,0 +1,19 @@
+.UserTable th {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-bottom: 1px solid #282c34;
+    text-align: left;
+    padding: 16px;
+
+}
+
+.UserInfo td {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-bottom: 1px solid #282c34;
+    text-align: left;
+    padding: 16px;
+
+
+}
+
