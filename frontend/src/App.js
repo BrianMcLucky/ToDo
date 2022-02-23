@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import UserList from "./components/user";
 import axios from "axios";
 import Footer from "./components/footer";
@@ -8,7 +6,11 @@ import Menu from "./components/menu";
 import './css/footer-style.css'
 import './css/menu-style.css'
 import './css/user-style.css'
-
+import './css/todo-style.css'
+import './css/project-style.css'
+import ToDoList from "./components/todo";
+import ProjectList from "./components/project";
+import {BrowserRouter, HashRouter, Switch, Route} from "react-router-dom";
 
 
 const DOMAIN = 'http://127.0.0.1:8000/api/'
@@ -17,10 +19,17 @@ const get_url = (url) => `${DOMAIN}${url}`
 
 class App extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            'users': []
-        };
+            // navbarItems: [
+            //     {name: 'Users', href: '/'},
+            //     {name: 'Project', href: '/projects'},
+            //     {name: 'ToDo', href: '/ToDo'},
+            // ],
+            users: [],
+            items: [],
+            projects: [],
+        }
     }
 
     componentDidMount() {
@@ -40,10 +49,17 @@ class App extends React.Component {
         // ]
         axios.get(get_url('users/')).then(response => {
             // const users = response.data
-            this.setState(
-                {
-                    'users': response.data
-                })
+            this.setState({users: response.data})
+        }).catch(error => console.log(error))
+
+        axios.get(get_url('ToDo/')).then(response => {
+            // const users = response.data
+            this.setState({items: response.data})
+        }).catch(error => console.log(error))
+
+        axios.get(get_url('projects/')).then(response => {
+            // const users = response.data
+            this.setState({projects: response.data})
         }).catch(error => console.log(error))
 
 
@@ -52,18 +68,35 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <header>
-                    <Menu/>
-                </header>
-                <main>
-                    < UserList users={this.state.users}/>
-                </main>
-                <Footer/>
+                <BrowserRouter>
+                    <header>
+                        <Menu>
+                        </Menu>
+                    </header>
+                    <main>
+                        <Switch>
+                            <Route exact path='/'>
+                                < UserList users={this.state.users}/>
+                            </Route>
+                            <Route exact path='/ToDo/'>
+                                < ToDoList items={this.state.items}/>
+                            </Route>
+                            <Route exact path='/projects/'>
+                                < ProjectList projects={this.state.projects}/>
+                            </Route>
+                        </Switch>
+                    </main>
+                    <Footer/>
+                </BrowserRouter>
             </div>
 
-        );
+
+        )
+
     }
 }
 
 
 export default App;
+
+

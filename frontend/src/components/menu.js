@@ -1,10 +1,14 @@
 import React from "react";
+import {Link} from "react-router-dom";
+
 
 export default function Menu() {
     return (
         <div className="menu">
-            <a href="#">Todo</a>
-            <a href="#">Проект</a>
+
+            <Link to={'/'}>Users</Link>
+            <Link to={'/ToDo/'}>Todo</Link>
+            <Link to={'/projects/'}>Проект</Link>
 
             <div className="menu-right">
                 <a href="#">Logout</a>
@@ -12,5 +16,8 @@ export default function Menu() {
         </div>
 
 
-)
+    )
 }
+
+
+
