@@ -3,21 +3,21 @@ import {Link} from "react-router-dom";
 
 
 export default function Menu() {
+
     return (
         <div className="menu">
 
-            <Link to={'/'}>Users</Link>
+            <Link to={'/Users/'}>Users</Link>
             <Link to={'/ToDo/'}>Todo</Link>
-            <Link to={'/projects/'}>Проект</Link>
+            <Link to={'/projects/'}>Projects</Link>
 
             <div className="menu-right">
-                <a href="#">Logout</a>
+                <Link to='/login/'>Login</Link>
             </div>
         </div>
 
 
     )
 }
-
 
 
