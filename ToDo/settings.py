@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'projectapp',
     'django_filters',
     'rest_framework.authtoken',
+    # 'userappv2',
+    'drf_yasg',
+    'graphene_django',
+
 ]
 
 MIDDLEWARE = [
@@ -148,10 +152,21 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
+
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'PAGE_SIZE': 100
+
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     # ],
 
+}
+
+GRAPHENE = {
+    "SCHEMA": "ToDo.schema.schema"
 }
