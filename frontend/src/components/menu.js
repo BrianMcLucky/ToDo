@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+
 
 
 export default function Menu() {
@@ -7,17 +7,21 @@ export default function Menu() {
     return (
         <div className="menu">
 
-            <Link to={'/Users/'}>Users</Link>
-            <Link to={'/ToDo/'}>Todo</Link>
-            <Link to={'/projects/'}>Projects</Link>
+            <a href="http://localhost:3000/Users/">Users</a>
+            <a href="http://localhost:3000/Todo/">Todo</a>
+            <a href="http://localhost:3000/Projects/">Projects</a>
+
 
             <div className="menu-right">
-                <Link to='/login/'>Login</Link>
+                <a>
+                    <input type="text" placeholder="Search.."/>
+                    <button>Search</button>
+                </a>
+                <a href="http://localhost:3000/Login/">Login</a>
             </div>
         </div>
 
 
     )
 }
-
 
