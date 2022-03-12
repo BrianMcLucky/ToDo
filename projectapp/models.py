@@ -7,6 +7,9 @@ class Project(models.Model):
     users = models.ManyToManyField(User)
     url = models.URLField(blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class ToDo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
