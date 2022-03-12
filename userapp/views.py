@@ -1,0 +1,24 @@
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework import mixins, viewsets, permissions
+from .models import User
+from .serializers import UserModelSerializer, UserBaseModelSerializer
+
+
+# class UserLimitOffsetPagination(LimitOffsetPagination):
+#     default_limit = 4
+
+
+class UserCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin,
+                        mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    # permission_classes = [permissions.IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
+
+    # pagination_class = UserLimitOffsetPagination
+
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return UserBaseModelSerializer
+        return UserModelSerializer
