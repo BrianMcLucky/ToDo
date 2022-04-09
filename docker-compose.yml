@@ -12,11 +12,28 @@ services:
       POSTGRES_PASSWORD: 1
       POSTGRES_DB: ToDo
 
-  adminer:
-    image: adminer:4.7.8-standalone
-    restart: always
+  backend:
+    build: ./ToDo
+    privileged: true
     ports:
       - 8080:8080
+    command:
+      bash -c "python manage.py migrate &&
+      python manage.py create_superuser &&
+      gunicorn ToDo.wsgi -b 0.0.0.0:8000"
+
     depends_on:
       - db
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
 
