@@ -50,23 +50,10 @@ class App extends React.Component {
 
     }
 
-    deleteProject(id) {
+
+    createToDo(project, text, creation_date, user) {
         const headers = this.get_headers()
-        axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers}).then(
-            response => {
-                this.load_data()
-
-            }
-        ).catch(error => {
-            console.log(error)
-            this.setState({items: []})
-        })
-    }
-
-    createToDo(project, text, creator) {
-
-        const headers = this.get_headers()
-        const data = {project: project, text: text, creator: creator}
+        const data = {project: project, text: text, creation_date: creation_date, user: user}
         axios.post('http://127.0.0.1:8000/api/ToDo/', data, {headers}).then(
             response => {
 
@@ -76,7 +63,6 @@ class App extends React.Component {
             console.log(error)
             this.setState({items: []})
         })
-
     }
 
     deleteToDo(id) {
@@ -174,7 +160,7 @@ class App extends React.Component {
             <div>
                 <BrowserRouter>
                     <header>
-                     <div className="menu">
+                        <div className="menu">
                             <a><a href="http://localhost:3000/Users/">Users</a></a>
                             <a><a href="http://localhost:3000/Todo/">Todo</a></a>
                             <a><a href="http://localhost:3000/Projects/">Projects</a></a>
@@ -202,11 +188,12 @@ class App extends React.Component {
                                        items={this.state.items}
                                        deleteToDo={(id) => this.deleteToDo(id)}/>}/>
 
+
                             <Route exact path='/ToDo/create/'
                                    component={() => <ToDoForm
-                                       projects={this.state.projects}
-                                       createBook={(project, text, creator) =>
-                                           this.createToDo(project, text, creator)}/>}/>
+                                       createToDo={(project, text, creation_date, user) =>
+                                           this.createToDo(project, text, creation_date, user)}/>}/>
+
 
                             <Route exact path='/projects/'
                                    component={() => < ProjectList
